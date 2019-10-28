@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  frontend:
+    image: frontend
+    build: ./frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_DATABASE=db
+      - MYSQL_ROOT_PASSWORD=development
+  backend:
+    depends_on:
+      - db
+    image: blank
+    build: ./backend
+    restart: always
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=development
