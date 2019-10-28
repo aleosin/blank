@@ -9,6 +9,8 @@ services:
       - backend
     ports:
       - "80:80"
+    volumes:
+      - ./frontend:/usr/src/app
   db:
     image: mysql:5.7
     restart: always
@@ -27,3 +29,5 @@ services:
       - MYSQL_DATABASE=db
       - MYSQL_USER=root
       - MYSQL_PASSWORD=development
+    volumes:
+      - ./backend:/usr/src/app
