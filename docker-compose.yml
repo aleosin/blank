@@ -12,6 +12,8 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend/spa/src:/usr/src/app/spa/src
+      - ./frontend/spa/package.json:/usr/src/app/spa/package.json
+      - ./frontend/spa/yarn.lock:/usr/src/app/spa/yarn.lock
   db:
     image: mysql:5.7
     restart: always
