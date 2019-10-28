@@ -10,5 +10,7 @@ Uses React, Redux and Material UI:
 * To build custom user-facing application
 
 Uses Docker to ease development and production setup.
+
 Uses Nginx as a balancer and assets server.
+
 Uses MySQL as a RDBMS.
