@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import TopLine from './TopLine';
+import NavigationLine from './NavigationLine';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Router } from "@reach/router"
+
+const Component = (props) => (
+  <div>
+    <h1>{props.title}</h1>
+    Page content.
+  </div>
+)
+
+const routing = [
+    <Component title="Landing page" key="landing" path="/" />,
+    <Component title="One more page" key="one-more" path="/one-more" />
+]
+
+class App extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+          <TopLine />
+          <NavigationLine routing={routing} />
+          <Container maxWidth="xl">
+            <Router>
+              {routing}
+            </Router>
+          </Container>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
