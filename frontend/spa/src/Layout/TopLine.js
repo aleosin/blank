@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
 import AppBar from '@material-ui/core/AppBar';
 import InputBase from '@material-ui/core/InputBase';
+import MeetingRoomTwoToneIcon from '@material-ui/icons/MeetingRoomTwoTone';
+import { navigate } from "@reach/router"
 
 const styles = theme => ({
   root: {
@@ -82,7 +84,10 @@ class TopLine extends React.Component {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
-            <Button color="inherit" className={classes.loginButton}>Login</Button>
+            <Button color="inherit" className={classes.loginButton} onClick={()=>navigate('/sign-in')}>
+              <MeetingRoomTwoToneIcon />
+              Sign In
+            </Button>
           </Toolbar>
         </AppBar>
       </div>
