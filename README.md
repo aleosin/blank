@@ -21,6 +21,7 @@ Uses MySQL as a RDBMS.
 * Run command ```docker-compose exec backend python manage.py migrate``` to apply database migrations.
 * Site should be accessible on ```http://localhost``` where ```http://localhost/admin``` application can be found.
 * Run command ```docker-compose exec backend python manage.py createsuperuser``` to create admin user if needed.
+* Also, you can look at available API endpoints via ```http://localhost/api/```.
 
 ### How to develop
 * Run command ```docker-compose exec frontend yarn start``` to have ```http://localhost:3000``` for development of SPA application with live reload feature.
