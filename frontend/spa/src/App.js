@@ -6,7 +6,7 @@ import NavigationLine from './Layout/NavigationLine';
 import Copyright from './Layout/Copyright';
 import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
-import Box from '@material-ui/core/Box';
+import ForgotPassword from './Auth/ForgotPassword';
 
 import { Router } from "@reach/router"
 
@@ -25,6 +25,7 @@ const navigation = [
 const routing = [
   <SignIn key="sign-in" path="/sign-in" />,
   <SignUp key="sign-up" path="/sign-up" />,
+  <ForgotPassword key="forgot-password" path="/forgot-password" />,
     ...navigation
 ]
 
@@ -39,9 +40,7 @@ class App extends React.Component {
             <Router>
               {routing}
             </Router>
-            <Box mt={8}>
-              <Copyright />
-            </Box>
+            <Copyright />
           </Container>
       </React.Fragment>
     );
