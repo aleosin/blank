@@ -24,3 +24,4 @@ Uses MySQL as a RDBMS.
 ### How to develop
 * Run command ```docker-compose exec frontend yarn start``` to have ```http://localhost:3000``` for development of SPA application with live reload feature.
 * Python application also uses live reload, no special processes and ports needed.
+* Run command ```docker-compose exec backend python manage.py createsuperuser``` to create admin user.
