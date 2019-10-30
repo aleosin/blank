@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'corsheaders',
+    'allauth',
+    'allauth.account',
     'rest_framework',
-    'authenticate'
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +127,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -132,5 +138,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'app/django-static')
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-       'localhost:3000',
+    'http://localhost:3000',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
