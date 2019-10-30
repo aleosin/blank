@@ -5,7 +5,7 @@ Uses Django framework to serve following:
 * Auto-generated admin interface on top of ORM.
 * Auto-generated REST API on top of ORM.
 
-Uses React, Redux and Material UI:
+Uses React, Redux (not yet) and Material UI:
 * To build custom user-facing application.
 
 Uses Docker to ease development and production setup.
