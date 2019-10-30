@@ -19,11 +19,11 @@ Uses MySQL as a RDBMS.
 * Download source code from this repo.
 * Run command `docker-compose up -d --build` to build images and up containers.
 * Run command `docker-compose exec backend python manage.py migrate` to apply database migrations.
-* Site should be accessible on `http://localhost` where `http://localhost/admin` application can be found.
+* Site should be accessible on <http://localhost> where <http://localhost/admin> application can be found.
 * Run command `docker-compose exec backend python manage.py createsuperuser` to create admin user if needed.
-* Also, you can look at available API endpoints via `http://localhost/api/`.
+* Also, you can look at available API endpoints via <http://localhost/api/>.
   > Note that few authentication related API's are not listed there due to specifics of Browsable API application and 'django-rest-auth' package implementation.
 
 ### How to develop
-* Run command `docker-compose exec frontend yarn start` to have `http://localhost:3000` for development of SPA application with live reload feature.
+* Run command `docker-compose exec frontend yarn start` to have <http://localhost:3000> for development of SPA application with live reload feature.
 * Python application also uses live reload, no special processes and ports needed.
