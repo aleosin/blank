@@ -85,14 +85,21 @@ class TopLine extends React.Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
+  /**
+   * Needed here to remove link to menu anchor DOM element and prevent issues.
+   */
   componentWillUnmount() {
     this.closeMenu();
   }
 
   /**
    * Signs user out.
+   *
+   * Also removes link to menu anchor DOM element.
    */
   signOut() {
+    this.closeMenu();
+
     axios
       .post("/auth/logout/")
       .then(res => this.props.onSignedOut(res))
