@@ -32,11 +32,11 @@ class CustomizedSnackbar extends React.Component {
           horizontal: 'right',
         }}
         open={true}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
         onClose={this.onClose}
       >
         <CustomizedSnackbarContent
-          key = {this.props.snackbar.message}
+          key={this.props.snackbar.message}
           variant={this.props.snackbar.variant}
           message={this.props.snackbar.message}
           onClose={this.onClose}

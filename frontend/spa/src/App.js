@@ -93,7 +93,7 @@ class App extends React.Component {
             </Router>
             <Copyright />
           </Container>
-          {this.state.snackbar && <CustomizedSnackbar snackbar={this.state.snackbar} onClose={this.onSnackbarClosed} />}
+          {this.state.snackbar && <CustomizedSnackbar key={this.state.snackbar.message} snackbar={this.state.snackbar} onClose={this.onSnackbarClosed} />}
       </React.Fragment>
     );
   }
