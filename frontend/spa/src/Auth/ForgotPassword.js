@@ -71,8 +71,8 @@ export default function ForgotPassword() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to="/sign-up" variant="body2">
-                Don't have an account? Sign Up
+              <Link to="/sign-in" variant="body2">
+                Return to Sign In
               </Link>
             </Grid>
           </Grid>

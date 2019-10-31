@@ -2,7 +2,6 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
@@ -10,7 +9,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from "@reach/router"
+import { Link, navigate } from '@reach/router';
+import axios from 'axios';
+import { Formik, Field, Form } from 'formik';
+import { TextField } from 'formik-material-ui';
+
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -37,8 +40,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    axios
+      .post("/auth/login/", values)
+      .then(res => axios.get('/auth/user/'))
+      .then(res => props.onSigned(res))
+      .then(() => navigate('/'))
+      .finally(function () {
+        setSubmitting(false);
+      })
+      .catch(err => console.log(err));
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -50,55 +65,66 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to="/forgot-password" variant="body2">
-                Forgot password?
-              </Link>
+
+        <Formik
+          initialValues={{ username: '', password: '' }}
+          onSubmit={handleSubmit}
+        >
+        {({ isSubmitting }) => (
+          <Form className={classes.form} noValidate>
+            <Field
+              component={TextField}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
+            <Field
+              component={TextField}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              type="submit"
+              disabled={isSubmitting}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link to="/forgot-password" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to="/sign-up" variant="body2">
+                  Don't have an account? Sign Up
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link to="/sign-up" variant="body2">
-                Don't have an account? Sign Up
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
+          </Form>
+        )}
+        </Formik>
       </div>
     </Container>
   );

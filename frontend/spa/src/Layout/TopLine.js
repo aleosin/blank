@@ -8,6 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import InputBase from '@material-ui/core/InputBase';
 import MeetingRoomTwoToneIcon from '@material-ui/icons/MeetingRoomTwoTone';
 import { navigate } from "@reach/router"
+import axios from 'axios';
 
 const styles = theme => ({
   root: {
@@ -61,6 +62,18 @@ const styles = theme => ({
 
 class TopLine extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.signOut = this.signOut.bind(this);
+  }
+
+  signOut() {
+    axios
+      .post("/auth/logout/")
+      .then(res => this.props.onSignedOut(res))
+      .catch(err => console.log(err));
+  }
+
   render() {
     const classes = this.props.classes;
 
@@ -84,10 +97,15 @@ class TopLine extends React.Component {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
-            <Button color="inherit" className={classes.loginButton} onClick={()=>navigate('/sign-in')}>
+            {!this.props.user && <Button color="inherit" className={classes.loginButton} onClick={()=>navigate('/sign-in')}>
               <MeetingRoomTwoToneIcon />
               Sign In
-            </Button>
+            </Button>}
+
+            {this.props.user && <Button color="inherit" className={classes.loginButton} onClick={this.signOut}>
+              <MeetingRoomTwoToneIcon />
+              Sign Out
+            </Button>}
           </Toolbar>
         </AppBar>
       </div>
