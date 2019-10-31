@@ -1,14 +1,22 @@
 import React from 'react';
 import { withStyles, fade } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import SearchIcon from '@material-ui/icons/Search';
-import AppBar from '@material-ui/core/AppBar';
-import InputBase from '@material-ui/core/InputBase';
-import MeetingRoomTwoToneIcon from '@material-ui/icons/MeetingRoomTwoTone';
 import { navigate } from "@reach/router"
 import axios from 'axios';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import MeetingRoomTwoToneIcon from '@material-ui/icons/MeetingRoomTwoTone';
+
+
 
 const styles = theme => ({
   root: {
@@ -64,14 +72,47 @@ class TopLine extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      anchorEl: null,
+      isMenuOpen: false
+    }
+
+    this.menuId = 'primary-search-account-menu';
+
     this.signOut = this.signOut.bind(this);
+    this.openProfileMenu = this.openProfileMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
 
+  /**
+   * Signs user out.
+   */
   signOut() {
     axios
       .post("/auth/logout/")
       .then(res => this.props.onSignedOut(res))
       .catch(err => console.log(err));
+  }
+
+  /**
+   * Opens profile menu on the right.
+   */
+  openProfileMenu(event) {
+    this.setState({
+      anchorEl: event.currentTarget,
+      isMenuOpen: true
+    });
+  }
+
+  /**
+   * Closes menu.
+   */
+  closeMenu() {
+    this.setState({
+      anchorEl: null,
+      isMenuOpen: false
+    });
   }
 
   render() {
@@ -102,12 +143,38 @@ class TopLine extends React.Component {
               Sign In
             </Button>}
 
-            {this.props.user && <Button color="inherit" className={classes.loginButton} onClick={this.signOut}>
-              <MeetingRoomTwoToneIcon />
-              Sign Out
-            </Button>}
+            {
+              this.props.user && 
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={this.menuId}
+                aria-haspopup="true"
+                onClick={this.openProfileMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            }
           </Toolbar>
         </AppBar>
+        {
+          this.props.user &&
+          <Menu
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={this.menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={this.state.isMenuOpen}
+            onClose={this.closeMenu}
+          >
+            <MenuItem onClick={this.closeMenu}>Profile ({ this.props.user.username })</MenuItem>
+            <MenuItem onClick={this.closeMenu}>Settings</MenuItem>
+            <Divider />
+            <MenuItem onClick={this.signOut}>Sign out</MenuItem>
+          </Menu>
+        }
       </div>
     );
   }

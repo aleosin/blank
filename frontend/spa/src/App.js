@@ -54,7 +54,6 @@ class App extends React.Component {
   }
 
   onSignedOut(res) {
-    console.log(res);
     this.setState({ user: null })
   }
 
