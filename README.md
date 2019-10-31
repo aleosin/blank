@@ -12,7 +12,7 @@ Uses Docker to ease development and production setup.
 
 Uses Nginx as a balancer and assets server.
 
-Uses MySQL as a RDBMS. Might be switched later thanks to Django ORM.
+Uses MySQL as a RDBMS. Might be changed to an alternative RDBMS later thanks to Django ORM.
 
 ### How to setup and run
 * Setup [docker](https://www.docker.com) on Linux/Mac machine. Haven't checked on Windows, you are kindly welcome to try.
