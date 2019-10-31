@@ -85,6 +85,10 @@ class TopLine extends React.Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
+  componentWillUnmount() {
+    this.closeMenu();
+  }
+
   /**
    * Signs user out.
    */

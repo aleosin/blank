@@ -47,7 +47,7 @@ export default function SignIn(props) {
     axios
       .post("/auth/login/", values)
       .then(res => axios.get('/auth/user/'))
-      .then(res => props.onSigned(res))
+      .then(res => props.onSigned(res, true))
       .then(() => navigate('/'))
       .finally(function () {
         setSubmitting(false);

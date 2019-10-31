@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import TopLine from './Layout/TopLine';
 import NavigationLine from './Layout/NavigationLine';
 import Copyright from './Layout/Copyright';
+import SnackbarsQueue from './Layout/SnackbarsQueue/SnackbarsQueue';
 import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
 import ForgotPassword from './Auth/ForgotPassword';
@@ -25,7 +26,8 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      user: null
+      user: null,
+      snackbarQueue: []
     }
 
     this.onSigned = this.onSigned.bind(this)
@@ -49,12 +51,25 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-  onSigned(res) {
-    this.setState({ user: res.data })
+  onSigned(res, showSnackbar) {
+    this.setState({ user: res.data });
+
+    if (showSnackbar) {
+      this.setState({
+        snackbarQueue: [{
+          message: `You have signed in as ${res.data.username}!`
+        }]
+      })
+    }
   }
 
   onSignedOut(res) {
-    this.setState({ user: null })
+    this.setState({
+      user: null,
+      snackbarQueue: [{
+        message: 'You have signed out!'
+      }]
+    })
   }
 
   render() {
@@ -69,6 +84,7 @@ class App extends React.Component {
             </Router>
             <Copyright />
           </Container>
+          <SnackbarsQueue queue={this.state.snackbarQueue} />
       </React.Fragment>
     );
   }
