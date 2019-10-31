@@ -10,10 +10,6 @@ class CustomizedSnackbar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: true
-    };
-
     this.onClose = this.onClose.bind(this);
   }
 
@@ -26,9 +22,6 @@ class CustomizedSnackbar extends React.Component {
     }
 
     this.props.onClose();
-    this.setState({
-      isOpen: false
-    })
   };
 
   render() {
@@ -38,7 +31,7 @@ class CustomizedSnackbar extends React.Component {
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        open={this.state.isOpen}
+        open={true}
         autoHideDuration={6000}
         onClose={this.onClose}
       >
