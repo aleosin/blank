@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import TopLine from './Layout/TopLine';
 import NavigationLine from './Layout/NavigationLine';
 import Copyright from './Layout/Copyright';
-import SnackbarsQueue from './Layout/SnackbarsQueue/SnackbarsQueue';
+import CustomizedSnackbar from './Layout/Snackbar/CustomizedSnackbar';
 import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
 import ForgotPassword from './Auth/ForgotPassword';
@@ -27,11 +27,12 @@ class App extends React.Component {
 
     this.state = {
       user: null,
-      snackbarQueue: []
+      snackbar: null
     }
 
-    this.onSigned = this.onSigned.bind(this)
-    this.onSignedOut = this.onSignedOut.bind(this)
+    this.onSigned = this.onSigned.bind(this);
+    this.onSignedOut = this.onSignedOut.bind(this);
+    this.onSnackbarClosed = this.onSnackbarClosed.bind(this);
 
     this.navigation = [
       <Component title="Landing page" key="landing" path="/" />,
@@ -56,9 +57,10 @@ class App extends React.Component {
 
     if (showSnackbar) {
       this.setState({
-        snackbarQueue: [{
-          message: `You have signed in as ${res.data.username}!`
-        }]
+        snackbar: {
+          message: `You have signed in as ${res.data.username}!`,
+          variant: 'success'
+        }
       })
     }
   }
@@ -66,9 +68,16 @@ class App extends React.Component {
   onSignedOut(res) {
     this.setState({
       user: null,
-      snackbarQueue: [{
-        message: 'You have signed out!'
-      }]
+      snackbar: {
+        message: 'You have signed out!',
+        variant: 'success'
+      }
+    })
+  }
+
+  onSnackbarClosed() {
+    this.setState({
+      snackbar: null
     })
   }
 
@@ -84,7 +93,7 @@ class App extends React.Component {
             </Router>
             <Copyright />
           </Container>
-          <SnackbarsQueue queue={this.state.snackbarQueue} />
+          {this.state.snackbar && <CustomizedSnackbar snackbar={this.state.snackbar} onClose={this.onSnackbarClosed} />}
       </React.Fragment>
     );
   }

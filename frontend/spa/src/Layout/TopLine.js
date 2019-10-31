@@ -25,6 +25,9 @@ const styles = theme => ({
   loginButton: {
     marginLeft: theme.spacing(1),
   },
+  profileButton: {
+    marginLeft: theme.spacing(1),
+  },
   title: {
     flexGrow: 1,
     marginRight: theme.spacing(1),
@@ -157,6 +160,7 @@ class TopLine extends React.Component {
             {
               this.props.user && 
               <IconButton
+                className={classes.profileButton}
                 edge="end"
                 aria-label="account of current user"
                 aria-controls={this.menuId}

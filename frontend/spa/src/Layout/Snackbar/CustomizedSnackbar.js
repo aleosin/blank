@@ -25,6 +25,7 @@ class CustomizedSnackbar extends React.Component {
       return;
     }
 
+    this.props.onClose();
     this.setState({
       isOpen: false
     })
@@ -39,12 +40,13 @@ class CustomizedSnackbar extends React.Component {
         }}
         open={this.state.isOpen}
         autoHideDuration={6000}
-        onClose={this.close}
+        onClose={this.onClose}
       >
         <CustomizedSnackbarContent
+          key = {this.props.snackbar.message}
+          variant={this.props.snackbar.variant}
+          message={this.props.snackbar.message}
           onClose={this.onClose}
-          variant="success"
-          message={this.props.message}
         />
       </Snackbar>
     );
