@@ -15,7 +15,7 @@ Uses Nginx as a balancer and assets server.
 Uses MySQL as a RDBMS.
 
 ### How to setup and run
-* Setup docker on Linux/Mac machine.
+* Setup docker on Linux/Mac machine. Haven't checked on Windows, you are kindly welcome to try.
 * Download source code from this repo.
 * Run command `docker-compose up -d --build` to build images and up containers.
 * Run command `docker-compose exec backend python manage.py migrate` to apply database migrations.
