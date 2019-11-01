@@ -33,6 +33,9 @@ class App extends React.Component {
     this.onSigned = this.onSigned.bind(this);
     this.onSignedOut = this.onSignedOut.bind(this);
     this.onSnackbarClosed = this.onSnackbarClosed.bind(this);
+    this.onSignInEmpty = this.onSignInEmpty.bind(this);
+    this.onSignInFailed = this.onSignInFailed.bind(this);
+    this.onSignInError = this.onSignInError.bind(this);
 
     this.navigation = [
       <Component title="Landing page" key="landing" path="/" />,
@@ -40,7 +43,14 @@ class App extends React.Component {
     ]
 
     this.routing = [
-      <SignIn key="sign-in" path="/sign-in" onSigned={this.onSigned} />,
+      <SignIn
+        key="sign-in"
+        path="/sign-in"
+        onSigned={this.onSigned}
+        onSignInEmpty={this.onSignInEmpty}
+        onSignInFailed={this.onSignInFailed}
+        onSignInError={this.onSignInError}
+      />,
       <SignUp key="sign-up" path="/sign-up" />,
       <ForgotPassword key="forgot-password" path="/forgot-password" />,
         ...this.navigation
@@ -78,6 +88,33 @@ class App extends React.Component {
   onSnackbarClosed() {
     this.setState({
       snackbar: null
+    })
+  }
+
+  onSignInEmpty() {
+    this.setState({
+      snackbar: {
+        message: 'Please enter username and password.',
+        variant: 'info'
+      }
+    })
+  }
+
+  onSignInFailed() {
+    this.setState({
+      snackbar: {
+        message: 'User name or password are not valid!',
+        variant: 'error'
+      }
+    })
+  }
+
+  onSignInError() {
+    this.setState({
+      snackbar: {
+        message: 'Sign in service is not available, please try later.',
+        variant: 'error'
+      }
     })
   }
 

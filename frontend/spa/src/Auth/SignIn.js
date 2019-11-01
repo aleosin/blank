@@ -44,6 +44,11 @@ export default function SignIn(props) {
   const classes = useStyles();
 
   const handleSubmit = (values, { setSubmitting }) => {
+    if (!values.username || !values.password) {
+      props.onSignInEmpty();
+      return;
+    }
+
     axios
       .post("/auth/login/", values)
       .then(res => axios.get('/auth/user/'))
@@ -52,7 +57,14 @@ export default function SignIn(props) {
       .finally(function () {
         setSubmitting(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        if (err.response.status === 400) {
+          props.onSignInFailed();
+        }
+        else {
+          props.onSignInError();
+        }
+      });
   }
 
   return (
@@ -76,7 +88,6 @@ export default function SignIn(props) {
               component={TextField}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               id="username"
               label="User Name"
@@ -88,7 +99,6 @@ export default function SignIn(props) {
               component={TextField}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Password"
