@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,10 +10,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link, navigate } from '@reach/router';
-import axios from 'axios';
+import { Link } from '@reach/router';
 import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
+import actions from '../Redux/Actions';
 
 
 const useStyles = makeStyles(theme => ({
@@ -40,31 +41,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn(props) {
+function SignIn(props) {
   const classes = useStyles();
 
   const handleSubmit = (values, { setSubmitting }) => {
+    // todo: move to store?
+    setSubmitting(false);
+
     if (!values.username || !values.password) {
-      props.onSignInEmpty();
+      props.signInEmpty();
       return;
     }
 
-    axios
-      .post("/auth/login/", values)
-      .then(res => axios.get('/auth/user/'))
-      .then(res => props.onSigned(res, true))
-      .then(() => navigate('/'))
-      .finally(function () {
-        setSubmitting(false);
-      })
-      .catch(err => {
-        if (err.response.status === 400) {
-          props.onSignInFailed();
-        }
-        else {
-          props.onSignInError();
-        }
-      });
+    props.signIn(values);
   }
 
   return (
@@ -139,3 +128,8 @@ export default function SignIn(props) {
     </Container>
   );
 }
+
+export default connect(null, {
+  signIn: actions.signIn,
+  signInEmpty: actions.signInEmpty,
+})(SignIn);

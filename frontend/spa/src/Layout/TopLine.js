@@ -1,7 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { withStyles, fade } from '@material-ui/core/styles';
 import { navigate } from "@reach/router"
-import axios from 'axios';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import MeetingRoomTwoToneIcon from '@material-ui/icons/MeetingRoomTwoTone';
 
-
+import actions from '../Redux/Actions';
 
 const styles = theme => ({
   root: {
@@ -102,11 +102,7 @@ class TopLine extends React.Component {
    */
   signOut() {
     this.closeMenu();
-
-    axios
-      .post("/auth/logout/")
-      .then(res => this.props.onSignedOut(res))
-      .catch(err => console.log(err));
+    this.props.signOut();
   }
 
   /**
@@ -195,4 +191,10 @@ class TopLine extends React.Component {
   }
 }
 
-export default withStyles(styles)(TopLine);
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps, {signOut: actions.signOut})(withStyles(styles)(TopLine));

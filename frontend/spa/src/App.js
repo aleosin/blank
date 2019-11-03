@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import TopLine from './Layout/TopLine';
@@ -9,10 +10,7 @@ import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
 import ForgotPassword from './Auth/ForgotPassword';
 import { Router } from "@reach/router"
-import axios from 'axios';
-
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+import actions from './Redux/Actions';
 
 const Component = (props) => (
   <div>
@@ -25,104 +23,26 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      user: null,
-      snackbar: null
-    }
-
-    this.onSigned = this.onSigned.bind(this);
-    this.onSignedOut = this.onSignedOut.bind(this);
-    this.onSnackbarClosed = this.onSnackbarClosed.bind(this);
-    this.onSignInEmpty = this.onSignInEmpty.bind(this);
-    this.onSignInFailed = this.onSignInFailed.bind(this);
-    this.onSignInError = this.onSignInError.bind(this);
-
     this.navigation = [
       <Component title="Landing page" key="landing" path="/" />,
       <Component title="One more page" key="one-more" path="/one-more" />
     ]
 
     this.routing = [
-      <SignIn
-        key="sign-in"
-        path="/sign-in"
-        onSigned={this.onSigned}
-        onSignInEmpty={this.onSignInEmpty}
-        onSignInFailed={this.onSignInFailed}
-        onSignInError={this.onSignInError}
-      />,
+      <SignIn key="sign-in" path="/sign-in" />,
       <SignUp key="sign-up" path="/sign-up" />,
       <ForgotPassword key="forgot-password" path="/forgot-password" />,
         ...this.navigation
     ]
 
-    axios
-      .get('/auth/user/')
-      .then(this.onSigned)
-      .catch(err => console.log(err));
-  }
-
-  onSigned(res, showSnackbar) {
-    this.setState({ user: res.data });
-
-    if (showSnackbar) {
-      this.setState({
-        snackbar: {
-          message: `You have signed in as ${res.data.username}!`,
-          variant: 'success'
-        }
-      })
-    }
-  }
-
-  onSignedOut(res) {
-    this.setState({
-      user: null,
-      snackbar: {
-        message: 'You have signed out!',
-        variant: 'success'
-      }
-    })
-  }
-
-  onSnackbarClosed() {
-    this.setState({
-      snackbar: null
-    })
-  }
-
-  onSignInEmpty() {
-    this.setState({
-      snackbar: {
-        message: 'Please enter username and password.',
-        variant: 'info'
-      }
-    })
-  }
-
-  onSignInFailed() {
-    this.setState({
-      snackbar: {
-        message: 'User name or password are not valid!',
-        variant: 'error'
-      }
-    })
-  }
-
-  onSignInError() {
-    this.setState({
-      snackbar: {
-        message: 'Sign in service is not available, please try later.',
-        variant: 'error'
-      }
-    })
+    this.props.requestAppData();
   }
 
   render() {
     return (
       <React.Fragment>
         <CssBaseline />
-          <TopLine user={this.state.user} onSignedOut={this.onSignedOut} />
+          <TopLine />
           <NavigationLine routing={this.navigation} />
           <Container maxWidth="xl">
             <Router>
@@ -130,10 +50,18 @@ class App extends React.Component {
             </Router>
             <Copyright />
           </Container>
-          {this.state.snackbar && <CustomizedSnackbar key={this.state.snackbar.message} snackbar={this.state.snackbar} onClose={this.onSnackbarClosed} />}
+          <CustomizedSnackbar />
       </React.Fragment>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps, {
+  requestAppData: actions.requestAppData
+})(App);
