@@ -10,7 +10,7 @@ import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
 import ForgotPassword from './Auth/ForgotPassword';
 import { Router } from "@reach/router"
-import actions from './Redux/Actions';
+import actions from '../Redux/Actions';
 
 const Component = (props) => (
   <div>

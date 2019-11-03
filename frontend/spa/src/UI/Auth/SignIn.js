@@ -13,7 +13,7 @@ import Container from '@material-ui/core/Container';
 import { Link } from '@reach/router';
 import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
-import actions from '../Redux/Actions';
+import actions from '../../Redux/Actions';
 
 
 const useStyles = makeStyles(theme => ({

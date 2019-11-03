@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import Snackbar from '@material-ui/core/Snackbar';
 import CustomizedSnackbarContent from './CustomizedSnackbarContent';
-import actions from '../../Redux/Actions';
+import actions from '../../../Redux/Actions';
 
 /**
  * Tweaks to support closing of snackbar via buttons and use customized content look.
