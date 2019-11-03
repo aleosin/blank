@@ -7,7 +7,7 @@ Uses [Django framework](https://www.djangoproject.com) to serve following:
 Uses [Django REST framework](https://www.django-rest-framework.org) for:
 * Auto-generated REST API on top of ORM.
 
-Uses [django-rest-auth](http://django-rest-auth.readthedocs.io) and [django-allauth](https://django-allauth.readthedocs.io/en/latest/) to provide REST endpoints for Sign-in/Sign up features.
+Uses [django-rest-auth](https://django-rest-auth.readthedocs.io/en/latest/) and [django-allauth](https://django-allauth.readthedocs.io/en/latest/) to provide REST endpoints for Sign-in/Sign up features.
 
 Uses following to build custom user-facing application:
 * [React](https://reactjs.org) as a framework for how things look and automatically display data on its change.
