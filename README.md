@@ -10,11 +10,11 @@ Uses Django REST frameworks for:
 Uses django-rest-auth and django-allauth to provide REST endpoints for Sign-in/Sign up features.
 
 Uses following build custom user-facing application:
-* React as a framework for how things look and automatically display data on its change.
-* Material UI as a library of commonly used components.
-* Formik and its bindings to Material UI for handling forms.
-* Yup for forms schema validation.
-* Redux and Saga as a solution for state management.
+* [React](https://reactjs.org) as a framework for how things look and automatically display data on its change.
+* [Material UI](https://material-ui.com) as a library of commonly used components.
+* [Formik](https://jaredpalmer.com/formik) and [formik-material-ui](https://github.com/stackworx/formik-material-ui) to Material UI for handling forms.
+* [Yup](https://github.com/jquense/yup) for forms schema validation.
+* [React-Redux](https://react-redux.js.org), [Redux-Actions](https://redux-actions.js.org) and [Redux-Saga](https://redux-saga.js.org) as a solution for state management.
 
 Uses Docker to ease development and production setup.
 
