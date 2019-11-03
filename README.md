@@ -1,13 +1,13 @@
 ## Blank to start new web application of most kind.
 
-Uses Django framework to serve following:
+Uses [Django framework](https://www.djangoproject.com) to serve following:
 * Sign-in/Sign-up features.
 * Auto-generated admin interface on top of ORM.
 
-Uses Django REST frameworks for:
+Uses [Django REST framework](https://www.django-rest-framework.org) for:
 * Auto-generated REST API on top of ORM.
 
-Uses django-rest-auth and django-allauth to provide REST endpoints for Sign-in/Sign up features.
+Uses [django-rest-auth](http://django-rest-auth.readthedocs.io) and [django-allauth](https://django-allauth.readthedocs.io/en/latest/) to provide REST endpoints for Sign-in/Sign up features.
 
 Uses following build custom user-facing application:
 * [React](https://reactjs.org) as a framework for how things look and automatically display data on its change.
@@ -15,12 +15,13 @@ Uses following build custom user-facing application:
 * [Formik](https://jaredpalmer.com/formik) and [formik-material-ui](https://github.com/stackworx/formik-material-ui) to Material UI for handling forms.
 * [Yup](https://github.com/jquense/yup) for forms schema validation.
 * [React-Redux](https://react-redux.js.org), [Redux-Actions](https://redux-actions.js.org) and [Redux-Saga](https://redux-saga.js.org) as a solution for state management.
+* [Axios](https://github.com/axios/axios) as an HTTP client.
 
-Uses Docker to ease development and production setup.
+Uses [Docker](https://www.docker.com) to ease development and production setup.
 
-Uses Nginx as a balancer and assets server.
+Uses [Nginx](http://nginx.org) as a balancer and assets server.
 
-Uses MySQL as a RDBMS. Might be changed to an alternative RDBMS later thanks to Django ORM.
+Uses [MySQL](https://www.mysql.com) as a RDBMS. Might be changed to an alternative RDBMS later thanks to Django ORM.
 
 ### How to setup and run
 * Setup [docker](https://www.docker.com) on Linux/Mac machine. Haven't checked on Windows, you are kindly welcome to try.
