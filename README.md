@@ -9,7 +9,7 @@ Uses [Django REST framework](https://www.django-rest-framework.org) for:
 
 Uses [django-rest-auth](http://django-rest-auth.readthedocs.io) and [django-allauth](https://django-allauth.readthedocs.io/en/latest/) to provide REST endpoints for Sign-in/Sign up features.
 
-Uses following build custom user-facing application:
+Uses following to build custom user-facing application:
 * [React](https://reactjs.org) as a framework for how things look and automatically display data on its change.
 * [Material UI](https://material-ui.com) as a library of commonly used components.
 * [Formik](https://jaredpalmer.com/formik) and [formik-material-ui](https://github.com/stackworx/formik-material-ui) to Material UI for handling forms.
