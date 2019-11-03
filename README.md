@@ -31,3 +31,11 @@ Uses MySQL as a RDBMS. Might be changed to an alternative RDBMS later thanks to 
 ### How to develop
 * Run command `docker-compose exec frontend yarn start` to have <http://localhost:3000> for development of SPA application with live reload feature.
 * Python application also uses live reload, no special processes and ports needed.
+
+### Supported features
+* You can sign in with superuser account
+* You can sign out then
+
+To be continued.
+
+Next is upcoming
