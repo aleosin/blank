@@ -5,8 +5,12 @@ Uses Django framework to serve following:
 * Auto-generated admin interface on top of ORM.
 * Auto-generated REST API on top of ORM.
 
-Uses React, Redux (not yet) and Material UI:
-* To build custom user-facing application.
+Uses following build custom user-facing application:
+* React as a framework for how things look and automatically display data on its change.
+* Material UI as a library of commonly used components.
+* Formik and its bindings to Material UI for handling forms.
+* Yup for forms schema validation.
+* Redux and Saga as a solution for state management.
 
 Uses Docker to ease development and production setup.
 
