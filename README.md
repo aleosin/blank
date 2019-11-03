@@ -3,7 +3,11 @@
 Uses Django framework to serve following:
 * Sign-in/Sign-up features.
 * Auto-generated admin interface on top of ORM.
+
+Uses Django REST frameworks for:
 * Auto-generated REST API on top of ORM.
+
+Uses django-rest-auth and django-allauth to provide REST endpoints for Sign-in/Sign up features.
 
 Uses following build custom user-facing application:
 * React as a framework for how things look and automatically display data on its change.
@@ -37,5 +41,3 @@ Uses MySQL as a RDBMS. Might be changed to an alternative RDBMS later thanks to 
 * You can sign out then
 
 To be continued.
-
-Next is upcoming
