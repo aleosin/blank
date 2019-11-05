@@ -19,12 +19,20 @@ const namedActions = {
   },
   signInEmpty() {},
   signInFailed() {},
-  signInError(exception) {},
+  signInError() {},
 
   // Sign out
   signOut() {},
   signedOut() {},
   signOutError(exception) {},
+
+  // Sign up
+  signUp(values, setErrors) {return {
+    values: values,
+    setErrors: setErrors
+  }},
+  signUpFailed(errors) {return errors},
+  signUpError() {},
 
   // Snackbar
   showSnackbar(variant, message) {

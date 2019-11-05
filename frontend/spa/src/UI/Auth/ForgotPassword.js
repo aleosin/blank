@@ -46,7 +46,7 @@ export default function ForgotPassword() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Get a temporary password
+          Receive reset link
         </Typography>
         <form className={classes.form} noValidate>
           <TextField

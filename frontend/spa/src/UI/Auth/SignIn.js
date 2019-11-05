@@ -48,7 +48,7 @@ function SignIn(props) {
     // todo: move to store?
     setSubmitting(false);
 
-    if (!values.username || !values.password) {
+    if (!values.email || !values.password) {
       props.signInEmpty();
       return;
     }
@@ -68,22 +68,20 @@ function SignIn(props) {
         </Typography>
 
         <Formik
-          initialValues={{ username: '', password: '' }}
+          initialValues={{ email: '', password: '' }}
           onSubmit={handleSubmit}
         >
         {({ isSubmitting }) => (
           <Form className={classes.form} noValidate>
             <Field
-              component={TextField}
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="username"
-              label="User Name"
-              name="username"
-              autoComplete="username"
-              autoFocus
-            />
+                component={TextField}
+                variant="outlined"
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
             <Field
               component={TextField}
               variant="outlined"
