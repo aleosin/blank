@@ -5,7 +5,7 @@ import { navigate } from "@reach/router"
 
 function* requestAppData(action) {
     try {
-        const response = yield axios.get('/auth/user/');
+        const response = yield axios.get('/api/auth/user/');
         yield put(actions.signedIn(response.data, action.payload.fromSignIn));
     } catch (e) {
         yield put(actions.appDataLoadingError(e));
@@ -14,7 +14,7 @@ function* requestAppData(action) {
 
 function* signOut(action) {
     try {
-        yield call(axios.post, '/auth/logout/');
+        yield call(axios.post, '/api/auth/logout/');
         yield put(actions.signedOut());
         yield put(actions.showSnackbar('success', 'You have signed out!'));
     } catch (e) {
@@ -24,7 +24,7 @@ function* signOut(action) {
 
 function* signIn(action) {
     try {
-        yield axios.post('/auth/login/', action.payload);
+        yield axios.post('/api/auth/login/', action.payload);
         yield put(actions.requestAppData(true));
         yield navigate('/');
     }
@@ -61,7 +61,7 @@ function* signUp(action) {
     const setErrors = action.payload.setErrors;
 
     try {
-        yield axios.post('/auth/registration/', {
+        yield axios.post('/api/auth/registration/', {
             email: email,
             password1: password1,
             password2: password2,
