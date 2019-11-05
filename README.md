@@ -38,7 +38,8 @@ Uses [MySQL](https://www.mysql.com) as a RDBMS. Might be changed to an alternati
 * Python application also uses live reload, no special processes and ports needed.
 
 ### Supported features
-* You can sign in with superuser account
+* You can sign up (no confirmation emails for the moment)
+* You can sign in either with previusly signed up account or superuser account created from `createsuperuser` (see command above)
 * You can sign out then
 
 To be continued.
