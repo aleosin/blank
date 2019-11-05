@@ -58,7 +58,6 @@ function SignUp(props) {
     // todo: move to store?
     setSubmitting(false);
 
-    console.log(setErrors);
     props.signUp(values, setErrors);
   }
 

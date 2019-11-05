@@ -34,6 +34,18 @@ const namedActions = {
   signUpFailed(errors) {return errors},
   signUpError() {},
 
+  resetPassword(values, setErrors) {
+    return {
+      values: values,
+      setErrors: setErrors
+    }
+  },
+  resetPasswordSent(email) {return {
+    email: email
+  }},
+  resetPasswordFailed(errors) {},
+  resetPasswordError() {},
+
   // Snackbar
   showSnackbar(variant, message) {
     return {variant:variant, message:message};
