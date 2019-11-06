@@ -17,6 +17,13 @@ const reducer = handleActions(
         };
     },
 
+    [actions.appDataLoadingError]: (state, action) => {
+      return {
+            ...state,
+            isAppDataLoaded: true
+        };
+    },
+
     [actions.signedOut]: (state, action) => {
       return {
             ...state,
