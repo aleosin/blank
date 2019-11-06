@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
-    'rest_auth.registration'
+    'rest_auth.registration',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,7 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/django-static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'app/django-static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'django-static')
 
 CORS_ORIGIN_ALLOW_ALL = False
 
@@ -160,3 +161,10 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend'
 )
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'user.serializers.UserSerializer'
+}
+
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
