@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
+import WaitForLoading from './Layout/WaitForLoading';
 import TopLine from './Layout/TopLine';
 import NavigationLine from './Layout/NavigationLine';
 import Copyright from './Layout/Copyright';
@@ -9,7 +10,7 @@ import CustomizedSnackbar from './Layout/Snackbar/CustomizedSnackbar';
 import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
 import ForgotPassword from './Auth/ForgotPassword';
-import { Router } from "@reach/router"
+import { Router } from '@reach/router';
 import actions from '../Redux/Actions';
 
 const Component = (props) => (
@@ -42,15 +43,20 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-          <TopLine />
-          <NavigationLine routing={this.navigation} />
-          <Container maxWidth="xl">
-            <Router>
-              {this.routing}
-            </Router>
-            <Copyright />
-          </Container>
-          <CustomizedSnackbar />
+        {this.props.isAppDataLoaded && (
+          <React.Fragment>
+            <TopLine />
+            <NavigationLine routing={this.navigation} />
+            <Container maxWidth="xl">
+              <Router>
+                {this.routing}
+              </Router>
+              <Copyright />
+            </Container>
+            <CustomizedSnackbar />
+          </React.Fragment>
+        )}
+        {!this.props.isAppDataLoaded && <WaitForLoading />}
       </React.Fragment>
     );
   }
@@ -58,6 +64,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isAppDataLoaded: state.isAppDataLoaded,
     user: state.user
   };
 };
