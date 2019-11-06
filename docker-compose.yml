@@ -11,10 +11,10 @@ services:
       - "80:80"
       - "3000:3000"
     volumes:
-      - ./frontend/spa/src:/usr/src/app/spa/src
-      - ./frontend/spa/public:/usr/src/app/spa/public
-      - ./frontend/spa/package.json:/usr/src/app/spa/package.json
-      - ./frontend/spa/yarn.lock:/usr/src/app/spa/yarn.lock
+      - ./frontend/src:/usr/src/app/src
+      - ./frontend/public:/usr/src/app/public
+      - ./frontend/package.json:/usr/src/app/package.json
+      - ./frontend/yarn.lock:/usr/src/app/yarn.lock
   db:
     image: mysql:5.7
     restart: always
