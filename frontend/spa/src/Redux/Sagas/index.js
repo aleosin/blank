@@ -5,6 +5,7 @@ import SignUp from './SignUp';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
 import ResetPassword from './ResetPassword';
+import Profile from './Profile';
 
 export default function* rootSaga() {
   yield all([
@@ -12,6 +13,7 @@ export default function* rootSaga() {
     SignUp(),
     SignIn(),
     SignOut(),
-    ResetPassword()
+    ResetPassword(),
+    Profile()
   ])
 }

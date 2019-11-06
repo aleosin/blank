@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { withStyles, fade } from '@material-ui/core/styles';
-import { navigate } from "@reach/router"
+import { navigate } from '@reach/router';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -180,7 +180,7 @@ class TopLine extends React.Component {
             open={this.state.isMenuOpen}
             onClose={this.closeMenu}
           >
-            <MenuItem onClick={this.closeMenu}>Profile ({ this.props.user.username })</MenuItem>
+            <MenuItem onClick={()=>{this.closeMenu(); navigate('/profile');}}>Profile ({ this.props.user.username })</MenuItem>
             <MenuItem onClick={this.closeMenu}>Settings</MenuItem>
             <Divider />
             <MenuItem onClick={this.signOut}>Sign out</MenuItem>

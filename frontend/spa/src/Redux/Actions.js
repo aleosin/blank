@@ -50,7 +50,14 @@ const namedActions = {
   showSnackbar(variant, message) {
     return {variant:variant, message:message};
   },
-  hideSnackbar() {}
+  hideSnackbar() {},
+
+
+  // Profile
+  updateProfile(values) {
+    return {values: values};
+  },
+  updateProfileError() {}
 };
 
 const actions = createActions(namedActions);

@@ -9,6 +9,7 @@ import Copyright from './Layout/Copyright';
 import CustomizedSnackbar from './Layout/Snackbar/CustomizedSnackbar';
 import SignIn from './Auth/SignIn';
 import SignUp from './Auth/SignUp';
+import Profile from './Profile/Profile';
 import ForgotPassword from './Auth/ForgotPassword';
 import { Router, Redirect } from '@reach/router';
 import actions from '../Redux/Actions';
@@ -40,7 +41,7 @@ class App extends React.Component {
     ]
 
     const Authenticated = [
-
+      <Profile key="profile" path="/profile" />
     ]
 
     const routing = [
