@@ -13,7 +13,7 @@ const reducer = handleActions(
       return {
             ...state,
             isAppDataLoaded: true,
-            user: action.payload
+            user: action.payload.user
         };
     },
 
