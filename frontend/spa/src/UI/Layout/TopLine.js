@@ -181,7 +181,6 @@ class TopLine extends React.Component {
             onClose={this.closeMenu}
           >
             <MenuItem onClick={()=>{this.closeMenu(); navigate('/profile');}}>Profile ({ this.props.user.username })</MenuItem>
-            <MenuItem onClick={this.closeMenu}>Settings</MenuItem>
             <Divider />
             <MenuItem onClick={this.signOut}>Sign out</MenuItem>
           </Menu>
