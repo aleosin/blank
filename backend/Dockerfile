@@ -1,7 +1,7 @@
 FROM python:3.7
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends nginx \
+    && apt-get install -y --no-install-recommends nginx supervisor \
     && rm -rf /var/lib/apt/lists/*
 
 RUN rm -f /etc/nginx/conf.d/default.conf
@@ -17,4 +17,5 @@ RUN python manage.py collectstatic
 
 EXPOSE 80
 
-CMD ["gunicorn", "wsgi:application", "--bind", "0.0.0.0:8000", "--reload"]
+ADD supervisor.conf /etc/supervisor.conf
+CMD ["supervisord", "-c", "/etc/supervisor.conf"]
