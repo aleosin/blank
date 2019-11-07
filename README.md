@@ -41,5 +41,7 @@ Uses [MySQL](https://www.mysql.com) as a RDBMS. Might be changed to an alternati
 * You can sign up (no confirmation emails for the moment)
 * You can sign in either with previously signed up account or superuser account created from `createsuperuser` (see command above)
 * You can sign out then
+* You can change First and Last name in a Profile (email and username are not available now)
+* You can also change an Avatar image there
 
 To be continued.
