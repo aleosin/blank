@@ -19,7 +19,7 @@ Uses following to build custom user-facing application:
 
 Uses [Docker](https://www.docker.com) to ease development and production setup.
 
-Uses [Nginx](http://nginx.org) as a balancer and assets server.
+Uses [Nginx](http://nginx.org) as a proxy and assets server.
 
 Uses [MySQL](https://www.mysql.com) as a RDBMS. Might be changed to an alternative RDBMS later thanks to Django ORM.
 
