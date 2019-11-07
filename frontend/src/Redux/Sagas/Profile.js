@@ -18,8 +18,28 @@ function* updateProfileError(action) {
     yield put(actions.showSnackbar('error', 'Profile service is not available, please try later.'));
 }
 
+function* updateAvatar(action) {
+    const data = new FormData();
+    data.append('avatar', action.payload.file)
+
+    try {
+        const response = yield axios.patch('/api/auth/user/', data);
+        yield put(actions.signedIn(response.data, false));
+        yield put(actions.showSnackbar('success', 'Avatar saved!'));
+    }
+    catch (e) {
+        yield put(actions.updateAvatarError());
+    }
+}
+
+function* updateAvatarError(action) {
+    yield put(actions.showSnackbar('error', 'Avatar service is not available, please try later.'));
+}
 
 export default function* Saga() {
   yield takeLatest(actions.updateProfile, updateProfile);
   yield takeLatest(actions.updateProfileError, updateProfileError);
+
+  yield takeLatest(actions.updateAvatar, updateAvatar);
+  yield takeLatest(actions.updateAvatarError, updateAvatarError);
 }

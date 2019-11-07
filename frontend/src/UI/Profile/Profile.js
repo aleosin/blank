@@ -64,6 +64,8 @@ const useStyles = makeStyles(theme => ({
 function Profile(props) {
   const classes = useStyles();
 
+  const avatarInput = React.createRef();
+
   const handleSubmit = (values, { errors, touched, setSubmitting, setErrors }) => {
     // todo: move to store?
     setSubmitting(false);
@@ -71,15 +73,32 @@ function Profile(props) {
     props.updateProfile(values);
   }
 
+  const handleAvatarClick = () => {
+    avatarInput.current.click();
+  }
+
+  const handleAvatarChange = (event) => {
+    props.updateAvatar(event.target.files[0]);
+  }
+
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
       <div className={classes.paper}>
+        <input
+          accept="image/*"
+          style={{ display: 'none' }}
+          id="upload-avatar-field"
+          type="file"
+          ref={avatarInput} 
+          onChange={handleAvatarChange}
+        />
         <IconButton
           className={classes.addPhotoButton}
           aria-label="account of current user"
           aria-haspopup="true"
           color="inherit"
+          onClick={handleAvatarClick}
         >
           <Badge
               overlap="circle"
@@ -89,8 +108,10 @@ function Profile(props) {
               }}
               badgeContent={<Avatar className={classes.addPhotoBadge}><AddAPhotoIcon className={classes.addPhotoIcon} /></Avatar>}
             >
-            <Avatar className={classes.avatar}>
-              <PersonIcon fontSize="large" />
+            <Avatar className={classes.avatar} src={props.user.avatar}>
+              {!props.user.avatar &&
+                <PersonIcon fontSize="large" />
+              }
             </Avatar>
           </Badge>
         </IconButton>
@@ -177,5 +198,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  updateProfile: actions.updateProfile
+  updateProfile: actions.updateProfile,
+  updateAvatar: actions.updateAvatar,
 })(Profile);

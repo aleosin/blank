@@ -17,6 +17,7 @@ class UserSerializer(UserDetailsSerializer):
         # get and update user profile with avatar
         profile = instance.profile
         if profile_data and avatar:
-            profile.avatar.file = avatar['file']
+            profile.avatar = avatar
             profile.save()
+            
         return instance

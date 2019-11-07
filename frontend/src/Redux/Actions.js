@@ -57,7 +57,12 @@ const namedActions = {
   updateProfile(values) {
     return {values: values};
   },
-  updateProfileError() {}
+  updateProfileError() {},
+  
+  updateAvatar(file) {
+    return {file: file};
+  },
+  updateAvatarError() {}
 };
 
 const actions = createActions(namedActions);
