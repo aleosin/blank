@@ -16,6 +16,7 @@ import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
 import actions from '../../Redux/Actions';
 import {FormHelperText} from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const useStyles = makeStyles(theme => ({
@@ -40,6 +41,9 @@ const useStyles = makeStyles(theme => ({
     border: `2px solid ${theme.palette.background.paper}`,
     marginTop: -4,
     marginLeft: -4
+  },
+  addPhotoProgress: {
+    position: 'absolute'
   },
   addPhotoIcon: {
     fontSize: 10
@@ -92,6 +96,7 @@ function Profile(props) {
           type="file"
           ref={avatarInput} 
           onChange={handleAvatarChange}
+          disabled={props.profile.isAvatarLoading}
         />
         <IconButton
           className={classes.addPhotoButton}
@@ -99,6 +104,7 @@ function Profile(props) {
           aria-haspopup="true"
           color="inherit"
           onClick={handleAvatarClick}
+          disabled={props.profile.isAvatarLoading}
         >
           <Badge
               overlap="circle"
@@ -106,7 +112,11 @@ function Profile(props) {
                 vertical: 'bottom',
                 horizontal: 'right',
               }}
-              badgeContent={<Avatar className={classes.addPhotoBadge}><AddAPhotoIcon className={classes.addPhotoIcon} /></Avatar>}
+              badgeContent={
+                <Avatar className={classes.addPhotoBadge}>
+                  <AddAPhotoIcon className={classes.addPhotoIcon} />
+                </Avatar>
+              }
             >
             <Avatar className={classes.avatar} src={props.user.avatar}>
               {!props.user.avatar &&
@@ -114,6 +124,7 @@ function Profile(props) {
               }
             </Avatar>
           </Badge>
+          {props.profile.isAvatarLoading && <CircularProgress size={80} className={classes.addPhotoProgress} />}
         </IconButton>
         <Typography component="h1" variant="h5">
           Profile
@@ -193,7 +204,8 @@ function Profile(props) {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    profile: state.profile
   };
 };
 

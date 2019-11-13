@@ -62,6 +62,7 @@ const namedActions = {
   updateAvatar(file) {
     return {file: file};
   },
+  avatarUpdated() {},
   updateAvatarError() {}
 };
 

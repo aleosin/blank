@@ -4,13 +4,16 @@ import actions from './Actions';
 const defaultState = {
     isAppDataLoaded: false,
     user: null,
-    snackbar: null
+    snackbar: null,
+    profile: {
+        isAvatarLoading: false,
+        isNameFormLoading: false
+    }
 };
 
-const reducer = handleActions(
-  {
+const reducer = handleActions({
     [actions.signedIn]: (state, action) => {
-      return {
+        return {
             ...state,
             isAppDataLoaded: true,
             user: action.payload.user
@@ -18,21 +21,21 @@ const reducer = handleActions(
     },
 
     [actions.appDataLoadingError]: (state, action) => {
-      return {
+        return {
             ...state,
             isAppDataLoaded: true
         };
     },
 
     [actions.signedOut]: (state, action) => {
-      return {
+        return {
             ...state,
             user: null
         };
     },
 
     [actions.showSnackbar]: (state, action) => {
-      return {
+        return {
             ...state,
             snackbar: {
                 variant: action.payload.variant,
@@ -42,9 +45,36 @@ const reducer = handleActions(
     },
 
     [actions.hideSnackbar]: (state, action) => {
-      return {
+        return {
             ...state,
             snackbar: null
+        };
+    },
+
+    [actions.updateAvatar]: (state, action) => {
+        return {
+            ...state,
+            profile: {
+                isAvatarLoading: true
+            } 
+        };
+    },
+
+    [actions.avatarUpdated]: (state, action) => {
+        return {
+            ...state,
+            profile: {
+                isAvatarLoading: false
+            } 
+        };
+    },
+
+    [actions.updateAvatarError]: (state, action) => {
+        return {
+            ...state,
+            profile: {
+                isAvatarLoading: false
+            } 
         };
     }
   },

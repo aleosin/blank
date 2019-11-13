@@ -25,6 +25,7 @@ function* updateAvatar(action) {
     try {
         const response = yield axios.patch('/api/auth/user/', data);
         yield put(actions.signedIn(response.data, false));
+        yield put(actions.avatarUpdated());
         yield put(actions.showSnackbar('success', 'Avatar saved!'));
     }
     catch (e) {
