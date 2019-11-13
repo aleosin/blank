@@ -1,22 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
+
+import {
+  CssBaseline,
+  Container,
+  Typography,
+  Grid,
+  Avatar,
+  Badge,
+  Button,
+  IconButton,
+  CircularProgress,
+  FormHelperText
+} from '@material-ui/core';
+
 import PersonIcon from '@material-ui/icons/Person';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import Badge from '@material-ui/core/Badge';
-import Typography from '@material-ui/core/Typography';
+
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { Link } from "@reach/router";
+
+import { Link } from '@reach/router';
 import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
+
 import actions from '../../Redux/Actions';
-import {FormHelperText} from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const useStyles = makeStyles(theme => ({
