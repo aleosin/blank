@@ -89,7 +89,9 @@ function Profile(props) {
   }
 
   const handleAvatarChange = (event) => {
-    props.updateAvatar(event.target.files[0]);
+    if (event.target.files && event.target.files.length > 0) {
+      props.updateAvatar(event.target.files[0]);
+    }
   }
 
   return (
